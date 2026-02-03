@@ -1,16 +1,38 @@
-# UAS-DTU Round 2 Task (SEM 2)
+# UAS-DTU Round 2 Task (SEM 2) — Land/Water Segmentation + Camp Detection
 
-## ✅ Part Completed: Land vs Water Segmentation
-This project detects and separates **Land** and **Water** regions from input images using basic OpenCV.
+This project performs:
+✅ Land vs Water segmentation (overlay visualization)  
+✅ Detection of 3 Rescue Camps (Pink, Blue, Grey) using circle detection
 
-### Approach (Beginner Friendly)
-1. Read the image using OpenCV
-2. Convert BGR to HSV
-3. Detect water using blue HSV range (mask)
-4. Land mask = inverse of water mask
-5. Overlay colors and save output image
+The output images are saved into an `output/` folder.
 
-### Output Colors
-- **Land = Green**
-- **Water = Blue**
+---
+
+## 📌 Features
+
+### 1) Land / Water Segmentation
+- Converts image from **BGR → HSV**
+- Uses HSV thresholding to create a **water mask**
+- Applies morphological operations:
+  - **Opening** → removes noise
+  - **Closing** → fills small gaps
+- Generates overlay:
+  - **Water = Blue**
+  - **Land = Green**
+- Saves output as:  
+  `output/seg_<image_name>.png`
+
+### 2) Rescue Camp Detection (3 Camps)
+- Converts image to grayscale + median blur
+- Uses **Hough Circle Transform** to detect circular pads
+- Classifies camp type using BGR pixel value at circle center:
+  - **Pink camp**
+  - **Blue camp**
+  - **Grey camp**
+- Draws detected circles + labels and saves:
+  `output/camps_<image_name>.png`
+
+---
+
+## 📁 Folder Structure
 
